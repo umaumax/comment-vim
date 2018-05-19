@@ -16,7 +16,7 @@ in normal mode
 * `n` `\\`: comment out `n` lines
 * `n` `||`: uncomment out `n` lines
 
-in virtual mode
+in visual mode
 * `\\`: comment out selected lines
 * `||`: uncomment out selected lines
 
