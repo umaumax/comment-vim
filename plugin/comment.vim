@@ -47,6 +47,7 @@ endfunction
 augroup filetypedetect
 	au BufNewFile,BufRead .*profile  :call HeadComSet('#')
 	au BufNewFile,BufRead .*rc       :call HeadComSet('#')
+	au BufNewFile,BufRead .*env      :call HeadComSet('#')
 	au BufNewFile,BufRead .vimrc     :call HeadComSet('"')
 	au BufNewFile,BufRead config     :call HeadComSet('#') " for ~/.ssh/config
 	au BufNewFile,BufRead .tmux.conf :call HeadComSet('#')
@@ -66,7 +67,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.ninja :call HeadComSet('#')
 	au BufNewFile,BufRead *.asm   :call HeadComSet(';') " for nasm
 	au BufNewFile,BufRead *.s     :call HeadComSet('#')
-"	au BufNewFile,BufRead *.s     :call HeadComSet(';') " for plan9 asm
+	"	au BufNewFile,BufRead *.s     :call HeadComSet(';') " for plan9 asm
 	au BufNewFile,BufRead *.{gnuplot,gnu,gp}    :call HeadComSet('#')
 
 	au BufNewFile,BufRead *.m          :call HeadComSet('\/\/')
@@ -75,10 +76,10 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.{h,hpp}    :call HeadComSet('\/\/')
 	au BufNewFile,BufRead *.{c,cc,cpp} :call HeadComSet('\/\/')
 
- 	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
+	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
 	au BufNewFile,BufRead *.css  :call SandComSet('\/\*', '\*\/')
 
-" 	au BufNewFile,BufRead *.md nnoremap <silent> @  :s/^\([^*].*\)$/* \1/<CR>'
+	" 	au BufNewFile,BufRead *.md nnoremap <silent> @  :s/^\([^*].*\)$/* \1/<CR>'
 augroup END
 
 " pop user setting
