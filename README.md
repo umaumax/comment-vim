@@ -17,8 +17,8 @@ in normal mode
 * `n``|`: uncomment out `n` lines
 
 in virtual mode
-`\`: comment out selected lines
-`|`: uncomment out selected lines
+* `\`: comment out selected lines
+* `|`: uncomment out selected lines
 
 ## FYI
 [tyru/caw\.vim: Vim comment plugin: supported operator/non\-operator mappings, repeatable by dot\-command, 300\+ filetypes]( https://github.com/tyru/caw.vim )
