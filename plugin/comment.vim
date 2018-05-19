@@ -16,20 +16,20 @@ set cpo&vim
 
 function! HeadComSet(char)
 	" comment
-	execute 'nnoremap \  :s/^\(.*\)$/' . a:char . '\1<CR>:noh<CR>'
-	execute 'vnoremap \  :s/^\(.*\)$/' . a:char . '\1<CR>:noh<CR>'
+	execute 'nnoremap \\  :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	execute 'vnoremap \\ :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
 	" uncomment
-	execute 'nnoremap \| :s/^\s*' . a:char . '\(.*\)$/\1/<CR>:noh<CR>'
-	execute 'vnoremap \| :s/^\s*' . a:char . '\(.*\)$/\1/<CR>:noh<CR>'
+	execute 'nnoremap \|\| :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	execute 'vnoremap \|\| :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
 endfunction
 
 function! SandComSet(char1, char2)
 	" comment
-	execute 'nnoremap \  :s/^\s*\(.*\)$/' . a:char1 . '\1' . a:char2 . '<CR>:noh<CR>'
-	execute 'vnoremap \  :s/^\s*\(.*\)$/' . a:char1 . '\1' . a:char2 . '<CR>:noh<CR>'
+	execute 'nnoremap \\  :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	execute 'vnoremap \\ :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
 	" uncomment
-	execute 'nnoremap \| :s/^\s*' . a:char1 . '\(.*\)'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
-	execute 'vnoremap \| :s/^\s*' . a:char1 . '\(.*\)'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	execute 'nnoremap \|\| :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	execute 'vnoremap \|\| :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
 endfunction
 
 augroup filetypedetect
