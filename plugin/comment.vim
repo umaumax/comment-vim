@@ -5,11 +5,6 @@ if exists('g:loaded_comment')
 endif
 let g:loaded_comment = 1
 
-"let s:file_size = getfsize(expand(@%))
-"if s:file_size > 0
-"	finish
-"endif
-
 " push user setting
 let s:save_cpo = &cpo
 set cpo&vim
