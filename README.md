@@ -11,10 +11,10 @@ Plug 'umaumax/comment-vim'
 
 ## how to use
 in normal mode
-`\`: comment out 1 line
-`|`: uncomment out 1 line
-`n``\`: comment out `n` lines
-`n``|`: uncomment out `n` lines
+* `\`: comment out 1 line
+* `|`: uncomment out 1 line
+* `n``\`: comment out `n` lines
+* `n``|`: uncomment out `n` lines
 
 in virtual mode
 `\`: comment out selected lines
