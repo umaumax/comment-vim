@@ -16,20 +16,25 @@ set cpo&vim
 
 function! HeadComSet(char)
 	" comment
-	execute 'nnoremap \\  :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
-	execute 'vnoremap \\ :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	" <C-_> = <C-/>
+	execute 'nnoremap \\          :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	execute 'vnoremap \\          :s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	execute 'inoremap <C-_>  <ESC>:s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>i'
 	" uncomment
-	execute 'nnoremap \|\| :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
-	execute 'vnoremap \|\| :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	execute 'nnoremap \|\|        :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	execute 'vnoremap \|\|        :s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	execute 'inoremap <C-\|> <ESC>:s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>i'
 endfunction
 
 function! SandComSet(char1, char2)
 	" comment
-	execute 'nnoremap \\  :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
-	execute 'vnoremap \\ :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	execute 'nnoremap \\          :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	execute 'vnoremap \\          :s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	execute 'inoremap <C-_>  <ESC>:s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>i'
 	" uncomment
-	execute 'nnoremap \|\| :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
-	execute 'vnoremap \|\| :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	execute 'nnoremap \|\|        :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	execute 'vnoremap \|\|        :s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	execute 'inoremap <C-\|> <ESC>:s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>i'
 endfunction
 
 augroup filetypedetect
