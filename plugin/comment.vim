@@ -12,14 +12,14 @@ set cpo&vim
 function! HeadComSet(char)
 	" comment
 	" <C-_> = <C-/>
-	let l:cmd=':noh<CR>:s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	let l:cmd=':s/^\(.*\)$/' . a:char . ' \1/<CR>:noh<CR>'
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
 	execute 'nnoremap \\ ' . l:cmd
 	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':noh<CR>:s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	let l:cmd=':s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
@@ -29,14 +29,14 @@ endfunction
 
 function! SandComSet(char1, char2)
 	" comment
-	let l:cmd=':noh<CR>:s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	let l:cmd=':s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '/<CR>:noh<CR>'
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
 	execute 'nnoremap \\ ' . l:cmd
 	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':noh<CR>:s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	let l:cmd=':s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
@@ -62,7 +62,6 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.cmake :call HeadComSet('#')
 	au BufNewFile,BufRead *.awk   :call HeadComSet('#')
 	au BufNewFile,BufRead *.py    :call HeadComSet('#')
-	au BufNewFile,BufRead *.md    :call HeadComSet('#')
 	au BufNewFile,BufRead *.tml   :call HeadComSet('#')
 	au BufNewFile,BufRead *.ninja :call HeadComSet('#')
 	au BufNewFile,BufRead *.asm   :call HeadComSet(';') " for nasm
@@ -76,8 +75,10 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.{h,hpp}    :call HeadComSet('\/\/')
 	au BufNewFile,BufRead *.{c,cc,cpp} :call HeadComSet('\/\/')
 
-	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
+ 	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
 	au BufNewFile,BufRead *.css  :call SandComSet('\/\*', '\*\/')
+
+" 	au BufNewFile,BufRead *.md nnoremap <silent> @  :s/^\([^*].*\)$/* \1/<CR>'
 augroup END
 
 " pop user setting
