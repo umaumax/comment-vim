@@ -17,14 +17,14 @@ set cpo&vim
 function! HeadComSet(char)
 	" comment
 	" <C-_> = <C-/>
-	let l:cmd=':s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
+	let l:cmd=':noh<CR>:s/^\(.*\)$/' . a:char . ' \1<CR>:noh<CR>'
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
 	execute 'nnoremap \\ ' . l:cmd
 	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	let l:cmd=':noh<CR>:s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
@@ -34,14 +34,14 @@ endfunction
 
 function! SandComSet(char1, char2)
 	" comment
-	let l:cmd=':s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
+	let l:cmd=':noh<CR>:s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '<CR>:noh<CR>'
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
 	execute 'nnoremap \\ ' . l:cmd
 	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	let l:cmd=':noh<CR>:s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
