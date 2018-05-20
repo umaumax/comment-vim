@@ -15,6 +15,7 @@ function! Substitute(pat, sub, flags) range
 		let l:ret=substitute(l:line, a:pat, a:sub, a:flags)
 		call setline(l:n, l:ret)
 	endfor
+	call cursor(a:lastline+1, 1)
 endfunction
 
 " pick up arg
@@ -23,8 +24,8 @@ function! Args(index, ...)
 	return l:arg
 endfunction
 
-command! -nargs=1 -range   HeadComSub <line1>,<line2>call Substitute('^\(.*\)$'                    , <args> . ' \1', '')
-command! -nargs=1 -range UnHeadComSub <line1>,<line2>call Substitute('^\s*' . <args> . '\s*\(.*\)$', '\1'          , '')
+command! -nargs=1 -range   HeadComSub <line1>,<line2>call Substitute('^\(.*\)$', <args> . ' \1', '')
+command! -nargs=1 -range UnHeadComSub <line1>,<line2>call Substitute('^\s*' . <args> . '[ ]\?\(\s*.*\)$', '\1', '')
 command! -nargs=+ -range   SandComSub <line1>,<line2>call Substitute('^\s*\(.*\)$', Args(1, <f-args>) . ' \1 ' . Args(2, <f-args>), '')
 command! -nargs=+ -range UnSandComSub <line1>,<line2>call Substitute('^\s*' . Args(1, <f-args>) . '\s*\(.\{-}\)\s*'. Args(2, <f-args>) . '\s*$', '\1', '')
 
