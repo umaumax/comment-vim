@@ -9,17 +9,36 @@ let g:loaded_comment = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! Substitute(pat, sub, flags) range
+	for l:n in range(a:firstline, a:lastline)
+		let l:line=getline(l:n)
+		let l:ret=substitute(l:line, a:pat, a:sub, a:flags)
+		call setline(l:n, l:ret)
+	endfor
+endfunction
+
+" pick up arg
+function! Args(index, ...)
+	let l:arg = get(a:, a:index, '')
+	return l:arg
+endfunction
+
+command! -nargs=1 -range   HeadComSub <line1>,<line2>call Substitute('^\(.*\)$'                    , <args> . ' \1', '')
+command! -nargs=1 -range UnHeadComSub <line1>,<line2>call Substitute('^\s*' . <args> . '\s*\(.*\)$', '\1'          , '')
+command! -nargs=+ -range   SandComSub <line1>,<line2>call Substitute('^\s*\(.*\)$', Args(1, <f-args>) . ' \1 ' . Args(2, <f-args>), '')
+command! -nargs=+ -range UnSandComSub <line1>,<line2>call Substitute('^\s*' . Args(1, <f-args>) . '\s*\(.\{-}\)\s*'. Args(2, <f-args>) . '\s*$', '\1', '')
+
 function! HeadComSet(char)
 	" comment
 	" <C-_> = <C-/>
-	let l:cmd=':s/^\(.*\)$/' . a:char . ' \1/<CR>:noh<CR>'
-	execute 'nnoremap \  ' . l:cmd
-	execute 'vnoremap \  ' . l:cmd
-	execute 'nnoremap \\ ' . l:cmd
-	execute 'vnoremap \\ ' . l:cmd
-	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
+	let l:cmd=':HeadComSub(' ."'". a:char ."'" . ')<CR>'
+	execute 'nnoremap <silent> \  ' . l:cmd
+	execute 'vnoremap <silent> \  ' . l:cmd
+	execute 'nnoremap <silent> \\ ' . l:cmd
+	execute 'vnoremap <silent> \\ ' . l:cmd
+	execute 'inoremap <silent> <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':s/^\s*' . a:char . '\s*\(.*\)$/\1/<CR>:noh<CR>'
+	let l:cmd=':UnHeadComSub(' ."'". a:char ."'". ')<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
@@ -29,14 +48,15 @@ endfunction
 
 function! SandComSet(char1, char2)
 	" comment
-	let l:cmd=':s/^\s*\(.*\)$/' . a:char1 . ' \1 ' . a:char2 . '/<CR>:noh<CR>'
+	let l:cmd=':SandComSub ' . a:char1 .' '. a:char2 . '<CR>'
+	execute 'nnoremap <silent> \  ' . l:cmd
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
 	execute 'nnoremap \\ ' . l:cmd
 	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
-	let l:cmd=':s/^\s*' . a:char1 . '\s*\(.\{-}\)\s*'. a:char2 . '\s*$/\1/<CR>:noh<CR>'
+	let l:cmd=':UnSandComSub ' . a:char1 .' '. a:char2 . '<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
 	execute 'nnoremap \|\| ' . l:cmd
@@ -78,8 +98,6 @@ augroup filetypedetect
 
 	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
 	au BufNewFile,BufRead *.css  :call SandComSet('\/\*', '\*\/')
-
-	" 	au BufNewFile,BufRead *.md nnoremap <silent> @  :s/^\([^*].*\)$/* \1/<CR>'
 augroup END
 
 " pop user setting
