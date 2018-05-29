@@ -2,6 +2,9 @@
 
 This is a vim comment plugin sample.
 
+## TODO
+* multi line comment?
+
 ## install
 
 e.g.

@@ -69,7 +69,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead .*profile  :call HeadComSet('#')
 	au BufNewFile,BufRead .*rc       :call HeadComSet('#')
 	au BufNewFile,BufRead .*env      :call HeadComSet('#')
-	au BufNewFile,BufRead .vimrc     :call HeadComSet('"')
+	au BufNewFile,BufRead .*vimrc    :call HeadComSet('"')
 	au BufNewFile,BufRead config     :call HeadComSet('#') " for ~/.ssh/config
 	au BufNewFile,BufRead .tmux.conf :call HeadComSet('#')
 	au BufNewFile,BufRead Dockerfile :call HeadComSet('#')
@@ -80,7 +80,7 @@ augroup filetypedetect
 	au BufNewFile,BufRead CMakeLists.txt :call HeadComSet('#')
 
 	au BufNewFile,BufRead *.vim   :call HeadComSet('"')
-	au BufNewFile,BufRead *.sh    :call HeadComSet('#')
+	au BufNewFile,BufRead *.{sh,zsh} :call HeadComSet('#')
 	au BufNewFile,BufRead *.cmake :call HeadComSet('#')
 	au BufNewFile,BufRead *.awk   :call HeadComSet('#')
 	au BufNewFile,BufRead *.py    :call HeadComSet('#')
@@ -90,6 +90,8 @@ augroup filetypedetect
 	au BufNewFile,BufRead *.s     :call HeadComSet('#')
 	"	au BufNewFile,BufRead *.s     :call HeadComSet(';') " for plan9 asm
 	au BufNewFile,BufRead *.{gnuplot,gnu,gp}    :call HeadComSet('#')
+
+	au BufNewFile,BufRead * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
 
 	au BufNewFile,BufRead *.m          :call HeadComSet('\/\/')
 	au BufNewFile,BufRead *.go         :call HeadComSet('\/\/')
