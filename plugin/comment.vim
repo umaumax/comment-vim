@@ -70,11 +70,13 @@ augroup filetypedetect
 	au BufNewFile,BufRead .*rc       :call HeadComSet('#')
 	au BufNewFile,BufRead .*env      :call HeadComSet('#')
 	au BufNewFile,BufRead .*vimrc    :call HeadComSet('"')
-	au BufNewFile,BufRead config     :call HeadComSet('#') " for ~/.ssh/config
-	au BufNewFile,BufRead .tmux.conf :call HeadComSet('#')
+	au BufNewFile,BufRead *config     :call HeadComSet('#') " for ~/.ssh/config
+	" 	au BufNewFile,BufRead .tmux.conf :call HeadComSet('#')
+	au BufNewFile,BufRead *.conf     :call HeadComSet('#')
 	au BufNewFile,BufRead Dockerfile :call HeadComSet('#')
 	au BufNewFile,BufRead .gitignore :call HeadComSet('#')
 	au BufNewFile,BufRead .gitconfig :call HeadComSet('#')
+	au BufNewFile,BufRead .Xmodmap   :call HeadComSet('!')
 
 	au BufNewFile,BufRead Makefile :call HeadComSet('#')
 	au BufNewFile,BufRead CMakeLists.txt :call HeadComSet('#')
