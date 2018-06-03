@@ -67,45 +67,45 @@ endfunction
 
 augroup filetypedetect
 	" default comment
-	au BufNewFile,BufRead * :call HeadComSet('#')
+	au BufEnter * :call HeadComSet('#')
 
-	au BufNewFile,BufRead .*profile  :call HeadComSet('#')
-	au BufNewFile,BufRead .*rc       :call HeadComSet('#')
-	au BufNewFile,BufRead .*env      :call HeadComSet('#')
-	au BufNewFile,BufRead .*vimrc    :call HeadComSet('"')
-	au BufNewFile,BufRead *config     :call HeadComSet('#') " for ~/.ssh/config
-	" 	au BufNewFile,BufRead .tmux.conf :call HeadComSet('#')
-	au BufNewFile,BufRead *.conf     :call HeadComSet('#')
-	au BufNewFile,BufRead Dockerfile :call HeadComSet('#')
-	au BufNewFile,BufRead .gitignore :call HeadComSet('#')
-	au BufNewFile,BufRead .gitconfig :call HeadComSet('#')
-	au BufNewFile,BufRead .Xmodmap   :call HeadComSet('!')
+	au BufEnter .*profile  :call HeadComSet('#')
+	au BufEnter .*rc       :call HeadComSet('#')
+	au BufEnter .*env      :call HeadComSet('#')
+	au BufEnter .*vimrc    :call HeadComSet('"')
+	au BufEnter *config     :call HeadComSet('#') " for ~/.ssh/config
+	" 	au BufEnter .tmux.conf :call HeadComSet('#')
+	au BufEnter *.conf     :call HeadComSet('#')
+	au BufEnter Dockerfile :call HeadComSet('#')
+	au BufEnter .gitignore :call HeadComSet('#')
+	au BufEnter .gitconfig :call HeadComSet('#')
+	au BufEnter .Xmodmap   :call HeadComSet('!')
 
-	au BufNewFile,BufRead Makefile :call HeadComSet('#')
-	au BufNewFile,BufRead CMakeLists.txt :call HeadComSet('#')
+	au BufEnter Makefile :call HeadComSet('#')
+	au BufEnter CMakeLists.txt :call HeadComSet('#')
 
-	au BufNewFile,BufRead *.vim   :call HeadComSet('"')
-	au BufNewFile,BufRead *.{sh,zsh} :call HeadComSet('#')
-	au BufNewFile,BufRead *.cmake :call HeadComSet('#')
-	au BufNewFile,BufRead *.awk   :call HeadComSet('#')
-	au BufNewFile,BufRead *.py    :call HeadComSet('#')
-	au BufNewFile,BufRead *.tml   :call HeadComSet('#')
-	au BufNewFile,BufRead *.ninja :call HeadComSet('#')
-	au BufNewFile,BufRead *.asm   :call HeadComSet(';') " for nasm
-	au BufNewFile,BufRead *.s     :call HeadComSet('#')
-	"	au BufNewFile,BufRead *.s     :call HeadComSet(';') " for plan9 asm
-	au BufNewFile,BufRead *.{gnuplot,gnu,gp}    :call HeadComSet('#')
+	au BufEnter *.vim   :call HeadComSet('"')
+	au BufEnter *.{sh,zsh} :call HeadComSet('#')
+	au BufEnter *.cmake :call HeadComSet('#')
+	au BufEnter *.awk   :call HeadComSet('#')
+	au BufEnter *.py    :call HeadComSet('#')
+	au BufEnter *.tml   :call HeadComSet('#')
+	au BufEnter *.ninja :call HeadComSet('#')
+	au BufEnter *.asm   :call HeadComSet(';') " for nasm
+	au BufEnter *.s     :call HeadComSet('#')
+	"	au BufEnter *.s     :call HeadComSet(';') " for plan9 asm
+	au BufEnter *.{gnuplot,gnu,gp}    :call HeadComSet('#')
 
-	au BufNewFile,BufRead * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
+	au BufEnter * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
 
-	au BufNewFile,BufRead *.m          :call HeadComSet('\/\/')
-	au BufNewFile,BufRead *.go         :call HeadComSet('\/\/')
-	au BufNewFile,BufRead *.js         :call HeadComSet('\/\/')
-	au BufNewFile,BufRead *.{h,hpp}    :call HeadComSet('\/\/')
-	au BufNewFile,BufRead *.{c,cc,cpp} :call HeadComSet('\/\/')
+	au BufEnter *.m          :call HeadComSet('\/\/')
+	au BufEnter *.go         :call HeadComSet('\/\/')
+	au BufEnter *.js         :call HeadComSet('\/\/')
+	au BufEnter *.{h,hpp}    :call HeadComSet('\/\/')
+	au BufEnter *.{c,cc,cpp} :call HeadComSet('\/\/')
 
-	au BufNewFile,BufRead *.{html,md} :call SandComSet('<!--', '-->')
-	au BufNewFile,BufRead *.css  :call SandComSet('\/\*', '\*\/')
+	au BufEnter *.{html,md} :call SandComSet('<!--', '-->')
+	au BufEnter *.css  :call SandComSet('\/\*', '\*\/')
 augroup END
 
 " pop user setting
