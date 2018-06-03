@@ -66,6 +66,9 @@ function! SandComSet(char1, char2)
 endfunction
 
 augroup filetypedetect
+	" default comment
+	au BufNewFile,BufRead * :call HeadComSet('#')
+
 	au BufNewFile,BufRead .*profile  :call HeadComSet('#')
 	au BufNewFile,BufRead .*rc       :call HeadComSet('#')
 	au BufNewFile,BufRead .*env      :call HeadComSet('#')
