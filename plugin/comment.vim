@@ -65,9 +65,10 @@ function! SandComSet(char1, char2)
 	execute 'inoremap <C-\|> <ESC>' . l:cmd . 'i'
 endfunction
 
-augroup filetypedetect
+augroup commenti-vim_filetype_detect
 	" default comment
 	au BufEnter * :call HeadComSet('#')
+	au BufEnter * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
 
 	au BufEnter .*profile  :call HeadComSet('#')
 	au BufEnter .*rc       :call HeadComSet('#')
@@ -95,8 +96,6 @@ augroup filetypedetect
 	au BufEnter *.s     :call HeadComSet('#')
 	"	au BufEnter *.s     :call HeadComSet(';') " for plan9 asm
 	au BufEnter *.{gnuplot,gnu,gp}    :call HeadComSet('#')
-
-	au BufEnter * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
 
 	au BufEnter *.m          :call HeadComSet('\/\/')
 	au BufEnter *.go         :call HeadComSet('\/\/')
