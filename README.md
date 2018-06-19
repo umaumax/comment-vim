@@ -15,19 +15,13 @@ Plug 'umaumax/comment-vim'
 ## how to use
 in normal mode
 * `\`: comment out 1 line
-* `\\`: comment out 1 line
 * `n` `\`: comment out `n` lines
-* `n` `\\`: comment out `n` lines
 * `|`: uncomment out 1 line
-* `||`: uncomment out 1 line
 * `n` `|`: uncomment out `n` lines
-* `n` `||`: uncomment out `n` lines
 
 in visual mode
 * `\`: comment out selected lines
-* `\\`: comment out selected lines
 * `|`: uncomment out selected lines
-* `||`: uncomment out selected lines
 
 in insert mode
 * `C-/`: comment out 1 line

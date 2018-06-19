@@ -35,15 +35,11 @@ function! HeadComSet(char)
 	let l:cmd=':HeadComSub(' ."'". a:char ."'" . ')<CR>'
 	execute 'nnoremap <silent> \  ' . l:cmd
 	execute 'vnoremap <silent> \  ' . l:cmd
-	execute 'nnoremap <silent> \\ ' . l:cmd
-	execute 'vnoremap <silent> \\ ' . l:cmd
 	execute 'inoremap <silent> <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
 	let l:cmd=':UnHeadComSub(' ."'". a:char ."'". ')<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
-	execute 'nnoremap \|\| ' . l:cmd
-	execute 'vnoremap \|\| ' . l:cmd
 	execute 'inoremap <C-\|> <ESC>' . l:cmd . 'i'
 endfunction
 
@@ -53,15 +49,11 @@ function! SandComSet(char1, char2)
 	execute 'nnoremap <silent> \  ' . l:cmd
 	execute 'nnoremap \  ' . l:cmd
 	execute 'vnoremap \  ' . l:cmd
-	execute 'nnoremap \\ ' . l:cmd
-	execute 'vnoremap \\ ' . l:cmd
 	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
 	" uncomment
 	let l:cmd=':UnSandComSub ' . a:char1 .' '. a:char2 . '<CR>'
 	execute 'nnoremap \|   ' . l:cmd
 	execute 'vnoremap \|   ' . l:cmd
-	execute 'nnoremap \|\| ' . l:cmd
-	execute 'vnoremap \|\| ' . l:cmd
 	execute 'inoremap <C-\|> <ESC>' . l:cmd . 'i'
 endfunction
 
