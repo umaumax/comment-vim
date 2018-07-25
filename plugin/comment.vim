@@ -89,11 +89,12 @@ augroup commenti-vim_filetype_detect
 	"	au BufEnter *.s     :call HeadComSet(';') " for plan9 asm
 	au BufEnter *.{gnuplot,gnu,gp}    :call HeadComSet('#')
 
-	au BufEnter *.m          :call HeadComSet('\/\/')
-	au BufEnter *.go         :call HeadComSet('\/\/')
-	au BufEnter *.js         :call HeadComSet('\/\/')
-	au BufEnter *.{h,hpp}    :call HeadComSet('\/\/')
-	au BufEnter *.{c,cc,cpp} :call HeadComSet('\/\/')
+	au BufEnter *.m              :call HeadComSet('\/\/')
+	au BufEnter *.go             :call HeadComSet('\/\/')
+	au BufEnter *.js             :call HeadComSet('\/\/')
+	au BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
+	au BufEnter *.{h,hpp}        :call HeadComSet('\/\/')
+	au BufEnter *.{c,cc,cpp}     :call HeadComSet('\/\/')
 
 	au BufEnter *.{html,md} :call SandComSet('<!--', '-->')
 	au BufEnter *.css  :call SandComSet('\/\*', '\*\/')
