@@ -96,7 +96,7 @@ augroup commenti-vim_filetype_detect
 	au BufEnter *.{h,hpp}        :call HeadComSet('\/\/')
 	au BufEnter *.{c,cc,cpp}     :call HeadComSet('\/\/')
 
-	au BufEnter *.{html,md} :call SandComSet('<!--', '-->')
+	au BufEnter *.{html,xml,md} :call SandComSet('<!--', '-->')
 	au BufEnter *.css  :call SandComSet('\/\*', '\*\/')
 augroup END
 
