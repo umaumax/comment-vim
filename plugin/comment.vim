@@ -10,10 +10,11 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! Substitute(pat, sub, flags) range
-	for l:n in range(a:firstline, a:lastline)
-		let l:line=getline(l:n)
-		let l:ret=substitute(l:line, a:pat, a:sub, a:flags)
-		call setline(l:n, l:ret)
+	for n in range(a:firstline, a:lastline)
+		let line=getline(n)
+		let line=substitute(line, a:pat, a:sub, a:flags)
+		let line=substitute(line, '\s*$', '','')
+		call setline(n, line)
 	endfor
 	call cursor(a:lastline+1, 1)
 endfunction
@@ -59,45 +60,45 @@ endfunction
 
 augroup commenti-vim_filetype_detect
 	" default comment
-	au BufEnter * :call HeadComSet('#')
-	au BufEnter * if @% !~ '\.' && getline(1) !~ '^#!.*' | call HeadComSet('#') | endif
+	autocmd BufEnter * :call HeadComSet('#')
 
-	au BufEnter .*profile  :call HeadComSet('#')
-	au BufEnter .*rc       :call HeadComSet('#')
-	au BufEnter .*env      :call HeadComSet('#')
-	au BufEnter .*vimrc    :call HeadComSet('"')
-	au BufEnter *config     :call HeadComSet('#') " for ~/.ssh/config
-	" 	au BufEnter .tmux.conf :call HeadComSet('#')
-	au BufEnter *.conf     :call HeadComSet('#')
-	au BufEnter Dockerfile :call HeadComSet('#')
-	au BufEnter .gitignore :call HeadComSet('#')
-	au BufEnter .gitconfig :call HeadComSet('#')
-	au BufEnter .Xmodmap   :call HeadComSet('!')
+	autocmd BufEnter .*profile  :call HeadComSet('#')
+	autocmd BufEnter .*rc       :call HeadComSet('#')
+	autocmd BufEnter .*env      :call HeadComSet('#')
+	" NOTE: for ~/.ssh/config
+	autocmd BufEnter *config    :call HeadComSet('#')
+	" NOTE: for .tmux.conf
+	autocmd BufEnter *.conf     :call HeadComSet('#')
+	autocmd BufEnter Dockerfile :call HeadComSet('#')
+	autocmd BufEnter .gitignore :call HeadComSet('#')
+	autocmd BufEnter .gitconfig :call HeadComSet('#')
+	autocmd BufEnter .Xmodmap   :call HeadComSet('!')
 
-	au BufEnter Makefile :call HeadComSet('#')
-	au BufEnter CMakeLists.txt :call HeadComSet('#')
+	autocmd BufEnter Makefile       :call HeadComSet('#')
+	autocmd BufEnter CMakeLists.txt :call HeadComSet('#')
 
-	au BufEnter *.vim   :call HeadComSet('"')
-	au BufEnter *.{sh,zsh} :call HeadComSet('#')
-	au BufEnter *.cmake :call HeadComSet('#')
-	au BufEnter *.awk   :call HeadComSet('#')
-	au BufEnter *.py    :call HeadComSet('#')
-	au BufEnter *.tml   :call HeadComSet('#')
-	au BufEnter *.ninja :call HeadComSet('#')
-	au BufEnter *.asm   :call HeadComSet(';') " for nasm
-	au BufEnter *.s     :call HeadComSet('#')
-	"	au BufEnter *.s     :call HeadComSet(';') " for plan9 asm
-	au BufEnter *.{gnuplot,gnu,gp}    :call HeadComSet('#')
+	autocmd BufEnter .*vimrc            :call HeadComSet('"')
+	autocmd BufEnter *.vim              :call HeadComSet('"')
+	autocmd BufEnter *.{sh,zsh}         :call HeadComSet('#')
+	autocmd BufEnter *.cmake            :call HeadComSet('#')
+	autocmd BufEnter *.awk              :call HeadComSet('#')
+	autocmd BufEnter *.py               :call HeadComSet('#')
+	autocmd BufEnter *.tml              :call HeadComSet('#')
+	autocmd BufEnter *.ninja            :call HeadComSet('#')
+	autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
+	" NOTE: for nasm or plan9 asm
+	autocmd BufEnter *.asm :call HeadComSet(';')
+	autocmd BufEnter *.s   :call HeadComSet('#')
 
-	au BufEnter *.m              :call HeadComSet('\/\/')
-	au BufEnter *.go             :call HeadComSet('\/\/')
-	au BufEnter *.js             :call HeadComSet('\/\/')
-	au BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
-	au BufEnter *.{h,hpp}        :call HeadComSet('\/\/')
-	au BufEnter *.{c,cc,cpp}     :call HeadComSet('\/\/')
+	autocmd BufEnter *.m              :call HeadComSet('\/\/')
+	autocmd BufEnter *.go             :call HeadComSet('\/\/')
+	autocmd BufEnter *.js             :call HeadComSet('\/\/')
+	autocmd BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
+	autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
+	autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
 
-	au BufEnter *.{html,xml,md} :call SandComSet('<!--', '-->')
-	au BufEnter *.css  :call SandComSet('\/\*', '\*\/')
+	autocmd BufEnter *.css           :call SandComSet('\/\*', '\*\/')
+	autocmd BufEnter *.{html,xml,md} :call SandComSet('<!--', '-->')
 augroup END
 
 " pop user setting
