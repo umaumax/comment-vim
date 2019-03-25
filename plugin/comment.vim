@@ -97,8 +97,8 @@ augroup commenti-vim_filetype_detect
 	autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
 	autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
 
-	autocmd BufEnter *.css           :call SandComSet('\/\*', '\*\/')
-	autocmd BufEnter *.{html,xml,md} :call SandComSet('<!--', '-->')
+	autocmd BufEnter *.css                  :call SandComSet('\/\*', '\*\/')
+	autocmd BufEnter *.{html,xml,md,launch} :call SandComSet('<!--', '-->')
 augroup END
 
 " pop user setting
