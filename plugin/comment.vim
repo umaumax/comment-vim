@@ -96,6 +96,7 @@ augroup commenti-vim_filetype_detect
 	autocmd BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
 	autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
 	autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
+	autocmd BufEnter *.dot             :call HeadComSet('\/\/')
 
 	autocmd BufEnter *.css                  :call SandComSet('\/\*', '\*\/')
 	autocmd BufEnter *.{html,xml,md,launch} :call SandComSet('<!--', '-->')
