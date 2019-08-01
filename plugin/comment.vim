@@ -9,6 +9,44 @@ let g:loaded_comment = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! GetIndentStr(line_no)
+	let indent_str=0
+	if &expandtab == 1
+		let indent_str = repeat(' ', indent(a:line_no))
+	else
+		let indent_str = repeat("\t", indent(a:line_no) / &tabstop)
+	endif
+	return indent_str
+endfunction
+
+function! InsertRangeComment(start_str, end_str) range
+	call append(a:lastline, GetIndentStr(a:lastline).a:end_str)
+	call append(a:firstline-1, GetIndentStr(a:firstline).a:start_str)
+endfunction
+
+function! PythonComment() range
+	if a:firstline == a:lastline
+		" single line comment
+		execute a:firstline.','.a:lastline."HeadComSub '#'"
+	else
+		" multi lines comment
+		execute a:firstline.','.a:lastline."call InsertRangeComment('\"\"\"', '\"\"\"')"
+	endif
+endfunction
+
+function! PythonUnComment() range
+	let tmp_search_word = @/
+	" single and multi line comment
+	execute a:firstline.','.a:lastline."UnHeadComSub '#'"
+	" multi lines comment
+	execute (a:lastline).','.(a:lastline+1).'g/"""/d'
+	execute (a:firstline-1).','.(a:firstline).'g/"""/d'
+	let @/ = tmp_search_word
+endfunction
+
+command! -nargs=0 -range PythonComment <line1>,<line2>call PythonComment()
+command! -nargs=0 -range PythonUnComment <line1>,<line2>call PythonUnComment()
+
 function! Substitute(pat, sub, flags) range
 	for n in range(a:firstline, a:lastline)
 		let line=getline(n)
@@ -78,7 +116,6 @@ augroup commenti-vim_filetype_detect
 	autocmd BufEnter *.{sh,zsh}         :call HeadComSet('#')
 	autocmd BufEnter *.cmake            :call HeadComSet('#')
 	autocmd BufEnter *.awk              :call HeadComSet('#')
-	autocmd BufEnter *.py               :call HeadComSet('#')
 	autocmd BufEnter *.tml              :call HeadComSet('#')
 	autocmd BufEnter *.ninja            :call HeadComSet('#')
 	autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
@@ -93,6 +130,9 @@ augroup commenti-vim_filetype_detect
 	autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
 	autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
 	autocmd BufEnter *.dot            :call HeadComSet('\/\/')
+
+	" autocmd BufEnter *.py               :call HeadComSet('#')
+	autocmd BufEnter *.py             :call SetCommentKeyMapping(':PythonComment', ':PythonUnComment')
 
 	autocmd BufEnter *.css                  :call SandComSet('\/\*', '\*\/')
 	autocmd BufEnter *.{html,xml,md,launch} :call SandComSet('<!--', '-->')
