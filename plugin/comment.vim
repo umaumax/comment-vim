@@ -30,32 +30,28 @@ command! -nargs=1 -range UnHeadComSub <line1>,<line2>call Substitute('^\(\s*\)' 
 command! -nargs=+ -range   SandComSub <line1>,<line2>call Substitute('^\s*\(.*\)$', Args(1, <f-args>) . ' \1 ' . Args(2, <f-args>), '')
 command! -nargs=+ -range UnSandComSub <line1>,<line2>call Substitute('^\s*' . Args(1, <f-args>) . '\s*\(.\{-}\)\s*'. Args(2, <f-args>) . '\s*$', '\1', '')
 
-function! HeadComSet(char)
+function! SetCommentKeyMapping(comment_cmd, uncomment_cmd)
 	" comment
 	" <C-_> = <C-/>
-	let l:cmd=':HeadComSub(' ."'". a:char ."'" . ')<CR>'
-	execute 'nnoremap <silent> \  ' . l:cmd
-	execute 'vnoremap <silent> \  ' . l:cmd
-	execute 'inoremap <silent> <C-_> <ESC>' . l:cmd . 'i'
+	execute 'nnoremap <silent> \  ' . a:comment_cmd . '<CR>'
+	execute 'vnoremap <silent> \  ' . a:comment_cmd . '<CR>'
+	execute 'inoremap <silent> <C-_> <ESC>' . a:comment_cmd . '<CR>' . 'i'
 	" uncomment
-	let l:cmd=':UnHeadComSub(' ."'". a:char ."'". ')<CR>'
-	execute 'nnoremap \|   ' . l:cmd
-	execute 'vnoremap \|   ' . l:cmd
-	execute 'inoremap <C-\|> <ESC>' . l:cmd . 'i'
+	execute 'nnoremap \|   ' . a:uncomment_cmd . '<CR>'
+	execute 'vnoremap \|   ' . a:uncomment_cmd . '<CR>'
+	execute 'inoremap <C-\|> <ESC>' . a:uncomment_cmd . '<CR>' . 'i'
+endfunction
+
+function! HeadComSet(char)
+	let l:comment_cmd  =':HeadComSub(' ."'". a:char ."'" . ')'
+	let l:uncomment_cmd=':UnHeadComSub(' ."'". a:char ."'". ')'
+	call SetCommentKeyMapping(comment_cmd, uncomment_cmd)
 endfunction
 
 function! SandComSet(char1, char2)
-	" comment
-	let l:cmd=':SandComSub ' . a:char1 .' '. a:char2 . '<CR>'
-	execute 'nnoremap <silent> \  ' . l:cmd
-	execute 'nnoremap \  ' . l:cmd
-	execute 'vnoremap \  ' . l:cmd
-	execute 'inoremap <C-_> <ESC>' . l:cmd . 'i'
-	" uncomment
-	let l:cmd=':UnSandComSub ' . a:char1 .' '. a:char2 . '<CR>'
-	execute 'nnoremap \|   ' . l:cmd
-	execute 'vnoremap \|   ' . l:cmd
-	execute 'inoremap <C-\|> <ESC>' . l:cmd . 'i'
+	let l:comment_cmd  =':SandComSub '   . a:char1 .' '. a:char2
+	let l:uncomment_cmd=':UnSandComSub ' . a:char1 .' '. a:char2
+	call SetCommentKeyMapping(comment_cmd, uncomment_cmd)
 endfunction
 
 augroup commenti-vim_filetype_detect
@@ -96,7 +92,7 @@ augroup commenti-vim_filetype_detect
 	autocmd BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
 	autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
 	autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
-	autocmd BufEnter *.dot             :call HeadComSet('\/\/')
+	autocmd BufEnter *.dot            :call HeadComSet('\/\/')
 
 	autocmd BufEnter *.css                  :call SandComSet('\/\*', '\*\/')
 	autocmd BufEnter *.{html,xml,md,launch} :call SandComSet('<!--', '-->')
