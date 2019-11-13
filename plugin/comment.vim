@@ -108,8 +108,9 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter .gitconfig :call HeadComSet('#')
   autocmd BufEnter .Xmodmap   :call HeadComSet('!')
 
-  autocmd BufEnter Makefile       :call HeadComSet('#')
-  autocmd BufEnter CMakeLists.txt :call HeadComSet('#')
+  autocmd BufEnter Makefile         :call HeadComSet('#')
+  autocmd BufEnter {Make,make}.conf :call HeadComSet('#')
+  autocmd BufEnter CMakeLists.txt   :call HeadComSet('#')
 
   autocmd BufEnter .*vimrc            :call HeadComSet('"')
   autocmd BufEnter *.vim              :call HeadComSet('"')
