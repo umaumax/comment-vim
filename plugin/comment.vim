@@ -122,6 +122,8 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
   " NOTE: for nasm or plan9 asm
   autocmd BufEnter *.asm :call HeadComSet(';')
+  " NOTE: for llvm ir
+  autocmd BufEnter *.ll  :call HeadComSet(';')
   autocmd BufEnter *.s   :call HeadComSet('#')
 
   autocmd BufEnter *.m              :call HeadComSet('\/\/')
