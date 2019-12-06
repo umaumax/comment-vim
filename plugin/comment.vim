@@ -136,6 +136,7 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.groovy         :call HeadComSet('\/\/')
   autocmd BufEnter *.{h,hh,hpp}     :call HeadComSet('\/\/')
   autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
+  autocmd BufEnter *.rs             :call HeadComSet('\/\/')
   autocmd BufEnter *.dot            :call HeadComSet('\/\/')
   " NOTE: for yacc file
   autocmd BufEnter *.y              :call HeadComSet('\/\/')
