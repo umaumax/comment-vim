@@ -120,14 +120,16 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.{tml,toml}       :call HeadComSet('#')
   autocmd BufEnter *.ninja            :call HeadComSet('#')
   autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
+
   " NOTE: for nasm or plan9 asm
-  autocmd BufEnter *.asm    :call HeadComSet(';')
+  autocmd FileType asm      :call HeadComSet(';')
+  autocmd FileType nasm     :call HeadComSet(';')
+  " NOTE: for AT&T
+  autocmd FileType gas      :call HeadComSet('#')
   " NOTE: for llvm ir
   autocmd BufEnter *.ll     :call HeadComSet(';')
   " NOTE: for perl Reply setting file
   autocmd BufEnter .replyrc :call HeadComSet(';')
-
-  autocmd BufEnter *.s :call HeadComSet('#')
 
   autocmd BufEnter *.m              :call HeadComSet('\/\/')
   autocmd BufEnter *.go             :call HeadComSet('\/\/')
