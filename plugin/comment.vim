@@ -117,7 +117,7 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.{sh,zsh}         :call HeadComSet('#')
   autocmd BufEnter *.cmake            :call HeadComSet('#')
   autocmd BufEnter *.awk              :call HeadComSet('#')
-  autocmd BufEnter *.tml              :call HeadComSet('#')
+  autocmd BufEnter *.{tml,toml}       :call HeadComSet('#')
   autocmd BufEnter *.ninja            :call HeadComSet('#')
   autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
   " NOTE: for nasm or plan9 asm
