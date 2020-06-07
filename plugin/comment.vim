@@ -141,7 +141,7 @@ augroup commenti-vim_filetype_detect
   " NOTE: for yacc file
   autocmd BufEnter *.y              :call HeadComSet('\/\/')
   " NOTE: for nex [blynn/nex: Lexer for Go]( https://github.com/blynn/nex )
-  autocmd BufEnter *.nex              :call HeadComSet('\/\/')
+  autocmd BufEnter *.nex            :call HeadComSet('\/\/')
 
   " autocmd BufEnter *.py               :call HeadComSet('#')
   autocmd BufEnter *.py             :call SetCommentKeyMapping(':PythonComment', ':PythonUnComment')
