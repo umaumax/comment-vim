@@ -121,6 +121,8 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.ninja            :call HeadComSet('#')
   autocmd BufEnter *.{gnuplot,gnu,gp} :call HeadComSet('#')
 
+  autocmd BufEnter *.{wsd,pu,puml,plantuml,iuml} :call HeadComSet("'")
+
   " NOTE: for nasm or plan9 asm
   autocmd FileType asm      :call HeadComSet(';')
   autocmd FileType nasm     :call HeadComSet(';')
@@ -150,6 +152,7 @@ augroup commenti-vim_filetype_detect
 
   autocmd BufEnter *.css                  :call SandComSet('\/\*', '\*\/')
   autocmd BufEnter *.{html,xml,md,launch} :call SandComSet('<!--', '-->')
+  autocmd BufEnter *.{wsd,pu,puml,plantuml,iuml} :call SandComSet("/'", "'/")
 augroup END
 
 " pop user setting
