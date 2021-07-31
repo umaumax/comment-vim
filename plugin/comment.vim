@@ -92,9 +92,10 @@ function! SandComSet(char1, char2)
   call SetCommentKeyMapping(comment_cmd, uncomment_cmd)
 endfunction
 
+" default comment
+call HeadComSet('#')
 augroup commenti-vim_filetype_detect
-  " default comment
-  autocmd BufEnter * :call HeadComSet('#')
+  autocmd!
 
   autocmd BufEnter .*profile  :call HeadComSet('#')
   autocmd BufEnter .*rc       :call HeadComSet('#')
