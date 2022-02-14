@@ -144,6 +144,8 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.{c,cc,cpp,cxx} :call HeadComSet('\/\/')
   autocmd BufEnter *.rs             :call HeadComSet('\/\/')
   autocmd BufEnter *.dot            :call HeadComSet('\/\/')
+  " NOTE: for protocol buffer
+  autocmd BufEnter *.proto          :call HeadComSet('\/\/')
   " NOTE: for yacc file
   autocmd BufEnter *.y              :call HeadComSet('\/\/')
   " NOTE: for nex [blynn/nex: Lexer for Go]( https://github.com/blynn/nex )
