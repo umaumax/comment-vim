@@ -146,6 +146,7 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.dot            :call HeadComSet('\/\/')
   autocmd BufEnter *.vue            :call HeadComSet('\/\/')
   autocmd BufEnter *.{kt,kts}       :call HeadComSet('\/\/')
+  autocmd BufEnter *.{swift}        :call HeadComSet('\/\/')
   " NOTE: for protocol buffer
   autocmd BufEnter *.proto          :call HeadComSet('\/\/')
   " NOTE: for yacc file
