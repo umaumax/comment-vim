@@ -137,6 +137,7 @@ augroup commenti-vim_filetype_detect
   autocmd BufEnter *.m              :call HeadComSet('\/\/')
   autocmd BufEnter *.go             :call HeadComSet('\/\/')
   autocmd BufEnter *.js             :call HeadComSet('\/\/')
+  autocmd BufEnter *.ts             :call HeadComSet('\/\/')
   autocmd BufEnter *.json           :call HeadComSet('\/\/')
   autocmd BufEnter *.jenkins{,file} :call HeadComSet('\/\/')
   autocmd BufEnter *.groovy         :call HeadComSet('\/\/')
